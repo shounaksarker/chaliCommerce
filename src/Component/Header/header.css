@@ -1,0 +1,43 @@
+.header{
+    padding: 10px !important;
+}
+.header a{
+    font-size: 20px !important;
+    margin-right: 25px;
+    color: white;
+    transition: all 0.3s;
+}
+.header a:hover{
+    color: #E2087F;
+}
+.header a:active{
+    color: rgb(148, 16, 16);
+}
+.dropdown-menu {
+    background-color: #212529 !important;
+}
+.dropdown-menu a:hover{
+    background-color: #212529
+}
+.logo{
+    max-width: 50px;
+}
+
+/* .link{ */
+.navbar-nav a, .navbar-item a{
+    margin: auto 20px;
+    text-decoration: none;
+    font-size: 21px !important;
+}
+
+.dropdown-menu a{
+    margin: 0px
+}
+.dropdown-menu a:focus{
+    background-color: #212529;
+    color: #E2087F;
+}
+
+.navbar-item a:focus{
+    background: none !important;
+}

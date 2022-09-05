@@ -1,0 +1,23 @@
+.featured{
+    padding: 20px;
+}
+.featured .card-img-top{
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.featured .card{
+    border: none;
+}
+
+.featured .card-title{
+    max-width: 380px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.pp{
+    overflow: hidden;
+    height: 170px;
+}

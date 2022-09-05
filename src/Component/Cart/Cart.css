@@ -1,0 +1,12 @@
+.cart a{
+    text-decoration:none;
+    color: white;
+}
+.cart a:hover{
+    text-decoration:underline;
+    color: rgb(126, 235, 249);
+}
+td img{
+    max-width: 40px;
+    max-height: 30px;
+}

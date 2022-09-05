@@ -1,0 +1,14 @@
+.addToCart{
+    max-width: 800px;
+}
+.warrenty{
+    max-width: 40px;
+}
+
+.description{
+    font-size: 20px;
+}
+
+.singleProduct{
+    min-height: 80vh;
+}
