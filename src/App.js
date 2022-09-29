@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Auth from "./Component/Auth/Auth";
 import PrivateOutlet from "./Component/Auth/PrivateOutlet/PrivateOutlet";
+import Bill from "./Component/Cart/Bill";
 import Cart from "./Component/Cart/Cart";
 import Home from "./Component/Home/Home";
 import Singleproduct from "./Component/Singleproduct/Singleproduct";
@@ -21,8 +22,10 @@ library.add(faCoffee, faUserClock, faCartShopping, faArrowDown, faArrowUp);
 function App() {
   const url = "https://fakestoreapi.com";
   let [cart, setCart] = useState([]);
+  console.log("cart :", cart);
   const [product, setProduct] = useState([]); // for home 5 products
   const [user, setUser] = useState({
+    uid: "",
     name: "",
     email: "",
     password: "",
@@ -92,6 +95,7 @@ function App() {
         </Route>
 
         <Route path="/auth" element={<Auth />} />
+        <Route path="/bill" element={<Bill />} />
       </Routes>
     </MyContext.Provider>
   );

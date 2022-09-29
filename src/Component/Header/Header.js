@@ -6,8 +6,13 @@ import { MyContext } from "../../App";
 import logo from "../../imgs/logo.png";
 import "./header.css";
 
-const Header = ({handleLogout}) => {
+const Header = () => {
   const [, cart] = useContext(MyContext);
+
+  const handleLogout = () => {
+    console.log("logout pressed");
+    localStorage.clear();
+  };
 
   return (
     <Navbar
@@ -65,10 +70,7 @@ const Header = ({handleLogout}) => {
             </Link>
 
             {localStorage.getItem("name") && localStorage.getItem("email") ? (
-              <Link
-                to="/auth"
-                onClick={handleLogout}
-              >
+              <Link to="/" onClick={handleLogout}>
                 <FontAwesomeIcon icon="fa-solid fa-arrow-down" /> Logout
               </Link>
             ) : (
@@ -76,7 +78,6 @@ const Header = ({handleLogout}) => {
                 <FontAwesomeIcon icon="fa-solid fa-arrow-up" /> Login
               </Link>
             )}
-            
           </Nav>
         </Navbar.Collapse>
       </Container>

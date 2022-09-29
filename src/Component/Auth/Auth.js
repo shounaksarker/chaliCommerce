@@ -1,11 +1,9 @@
-import * as firebase from "firebase/app"; // import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
-import { getDatabase, ref, set, update, child, get } from "firebase/database";
+import { child, get, getDatabase, ref, set, update } from "firebase/database";
 import React, { useContext, useState } from "react";
 import { Button, Fade, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../App";
 import Header from "../Header/Header";
 import "./auth.css";
-import firebaseConfig from "./firebase.config";
+import app from "./firebase.config";
 
 const Auth = () => {
   const [, , , , , user, setUser] = useContext(MyContext);
-  // console.log("user", user);
   // ------ firebase ------
-  const app = firebase.initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const auth = getAuth();
 
@@ -64,7 +60,8 @@ const Auth = () => {
     createUserWithEmailAndPassword(auth, user.email, user.password)
       .then((res) => {
         const u = res.user;
-        console.log("u :", u);
+
+        // console.log("u :", u);
         alert("user created");
         set(ref(db, `/customer/${u.uid}`), {
           name: user.name,
@@ -74,6 +71,7 @@ const Auth = () => {
         });
         localStorage.setItem("name", user.name);
         localStorage.setItem("email", user.email);
+        localStorage.setItem("uid", u.uid);
         navigate(-1, { replace: true });
         setUser("");
       })
@@ -94,24 +92,25 @@ const Auth = () => {
           last_login: new Date(),
         });
         alert("login done");
-        
-        // get data from dtabase 
+
+        // get data from dtabase
         const dbRef = ref(getDatabase());
-        get(child(dbRef, `/customer/${u.uid}`)).then((snapshot) => {
-          if (snapshot.exists()) {
-            const userData = snapshot.val();
-            localStorage.setItem("name", userData.name);
-            localStorage.setItem("email", userData.email);
-          } else {
-            console.log("No data available");
-          }
-        }).catch((error) => {
-          console.error(error);
-        });
-
-        navigate(-1, { replace: true });
-        setUser("");
-
+        get(child(dbRef, `/customer/${u.uid}`))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              const userData = snapshot.val();
+              localStorage.setItem("name", userData.name);
+              localStorage.setItem("email", userData.email);
+              localStorage.setItem("uid", userData.uid);
+              navigate(-1 || "/", { replace: true });
+              setUser("");
+            } else {
+              console.log("No data available");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -120,20 +119,22 @@ const Auth = () => {
     e.preventDefault();
   };
 
-  const handleLogout=() => {
-    localStorage.clear();
-    signOut(auth).then(() => {
-      localStorage.clear();
-    }).catch((error) => {
-      alert(error.code)
-    });
-   }
+  // const handleLogout=() => {
+  //   console.log('logout pressed');
+  //   localStorage.clear();
+  //   signOut(auth).then(() => {
+  //     localStorage.clear();
+  //     alert('logout done')
+  //   }).catch((error) => {
+  //     alert(error.code)
+  //   });
+  //  }
 
   // others
   let navigate = useNavigate();
   return (
     <div className="authentication">
-      <Header handleLogout={handleLogout} />
+      <Header />
       <div className="container-md">
         <div className="sign-form mt-5">
           <div className="d-flex">

@@ -1,3 +1,5 @@
+import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBNBg0UejbMZpi9gwGev9lPi3mcrh5EOlc",
   authDomain: "chalicom.firebaseapp.com",
@@ -8,4 +10,6 @@ const firebaseConfig = {
   databaseURL: 'https://chalicom-default-rtdb.asia-southeast1.firebasedatabase.app/'
 };
 
-export default firebaseConfig;
+const app = initializeApp(firebaseConfig)
+
+export default app;

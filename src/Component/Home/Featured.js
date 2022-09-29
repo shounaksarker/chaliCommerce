@@ -8,7 +8,7 @@ const Featured = ({handleAdd,handleRemove}) => {
   const [url, cart, , product, setProduct] = useContext(MyContext);
 
   useEffect(() => {
-    fetch(url + "/products?limit=5")
+    fetch(url + "/products?limit=4")
       .then((res) => res.json())
       .then((json) => setProduct(json));
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,7 +27,7 @@ const Featured = ({handleAdd,handleRemove}) => {
           return (
             <Card key={p.id}>
               <Card.Img variant="top" src={`${p.image}`} />
-              <Card.Body>
+              <Card.Body>const []
                 <Card.Title>{p.title}</Card.Title>
                 <div className="pp">
                   <p>{p.description}</p>

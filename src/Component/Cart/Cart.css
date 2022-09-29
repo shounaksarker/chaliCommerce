@@ -1,12 +1,32 @@
-.cart a{
-    text-decoration:none;
-    color: white;
+.cart a {
+  text-decoration: none;
+  color: white;
 }
-.cart a:hover{
-    text-decoration:underline;
-    color: rgb(126, 235, 249);
+.cart a:hover {
+  text-decoration: underline;
+  color: rgb(126, 235, 249);
 }
-td img{
-    max-width: 40px;
-    max-height: 30px;
+td img {
+  max-width: 40px;
+  max-height: 30px;
+}
+
+/* bill.js */
+.billForm {
+  position: relative;
+  transform: translate(0, 40%);
+  padding: 30px;
+  box-shadow: 1px 1px 9px 1px #0000004f;
+}
+.spn {
+  font-weight: 300 !important;
+}
+.w5 {
+  width: 5%;
+}
+.w15 {
+  width: 15%;
+}
+.w55 {
+  width: 55%;
 }
